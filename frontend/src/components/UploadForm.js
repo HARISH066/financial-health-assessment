@@ -15,10 +15,9 @@ export default function UploadForm() {
     try {
       setLoading(true);
       const res = await uploadFinancials(file);
-      setMessage(res.message);
+      setMessage(`✅ ${res.message}`);
     } catch (err) {
-      console.error(err);
-      alert("Upload failed");
+      setMessage("❌ Upload failed");
     } finally {
       setLoading(false);
     }
