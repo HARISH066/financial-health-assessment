@@ -1,41 +1,20 @@
-import React, { useState } from "react";
-import { uploadFinancials } from "../api";
+import axios from "axios";
 
-export default function UploadForm() {
-  const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+function UploadForm({ onResult }) {
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert("Please select a CSV file");
-      return;
-    }
+    const res = await axios.post(
+      "https://financial-health-assessment-mt8d.onrender./analyze-csv",
+      formData
+    );
 
-    try {
-      setLoading(true);
-      const res = await uploadFinancials(file);
-      setMessage(`✅ ${res.message}`);
-    } catch (err) {
-      setMessage("❌ Upload failed");
-    } finally {
-      setLoading(false);
-    }
+    onResult(res.data);
   };
 
-  return (
-    <div className="upload-card">
-      <input
-        type="file"
-        accept=".csv"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
-
-      <button onClick={handleUpload} disabled={loading}>
-        {loading ? "Uploading..." : "Upload Financials"}
-      </button>
-
-      {message && <p>{message}</p>}
-    </div>
-  );
+  return <input type="file" accept=".csv" onChange={handleUpload} />;
 }
+
+export default UploadForm;
