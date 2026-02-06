@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const API_BASE = process.env.REACT_APP_API_URL;
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
-export const uploadFinancials = async (file) => {
+export const analyzeCSV = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
 
   const response = await axios.post(
-    `${API_BASE}/upload-financials`,
+    `${API_BASE_URL}/upload-financials`,
     formData,
     {
       headers: {
