@@ -1,0 +1,42 @@
+# =========================
+# Node / React
+# =========================
+node_modules/
+build/
+.pnp
+.pnp.js
+coverage/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Python
+# =========================
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# =========================
+# Uploaded / Generated Data
+# =========================
+uploaded_files/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment configs
+# =========================
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
