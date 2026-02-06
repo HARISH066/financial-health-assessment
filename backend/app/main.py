@@ -1,13 +1,13 @@
 from fastapi import FastAPI
-from backend.app.routers import assessment, insights, upload
-from backend.app.database import engine, Base
-from backend.app.routers import analyse
+from app.routers import assessment, insights, upload
+from app.database import engine, Base
+from app.routers import analyse
 from fastapi.middleware.cors import CORSMiddleware
 
 
 
 # Import models so SQLAlchemy knows them
-from backend.app.models.assessment import Assessment
+from app.models.assessment import Assessment
 
 app = FastAPI(
     title="Financial Health Assessment Tool",

@@ -2,16 +2,16 @@ from fastapi import APIRouter, UploadFile, File
 import shutil
 import os
 
-from backend.app.services.ingestion import load_financial_data
-from backend.app.services.metrics import extract_metrics
-from backend.app.services.scoring import calculate_financial_health
-from backend.app.services.ai_insights import generate_insights
-from backend.app.database import SessionLocal
-from backend.app.models.assessment import Assessment
-from backend.app.services.credit import evaluate_creditworthiness
-from backend.app.services.forecast import forecast_cash_flow
-from backend.app.services.benchmark import benchmark_industry
-from backend.app.services.ai_llm import generate_ai_insights
+from app.services.ingestion import load_financial_data
+from app.services.metrics import extract_metrics
+from app.services.scoring import calculate_financial_health
+from app.services.ai_insights import generate_insights
+from app.database import SessionLocal
+from app.models.assessment import Assessment
+from app.services.credit import evaluate_creditworthiness
+from app.services.forecast import forecast_cash_flow
+from app.services.benchmark import benchmark_industry
+from app.services.ai_llm import generate_ai_insights
 
 
 

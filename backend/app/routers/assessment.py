@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from backend.app.schemas.financial import FinancialMetrics
-from backend.app.services.scoring import calculate_financial_health
-from backend.app.database import SessionLocal
-from backend.app.models.assessment import Assessment
+from app.schemas.financial import FinancialMetrics
+from app.services.scoring import calculate_financial_health
+from app.database import SessionLocal
+from app.models.assessment import Assessment
 
 router = APIRouter()
 

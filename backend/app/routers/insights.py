@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from backend.app.services.ai_insights import generate_insights
-from backend.app.schemas.financial import HealthAssessment, AIInsightResponse
+from app.services.ai_insights import generate_insights
+from app.schemas.financial import HealthAssessment, AIInsightResponse
 
 router = APIRouter()
 
