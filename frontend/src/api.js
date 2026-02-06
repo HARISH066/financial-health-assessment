@@ -1,13 +1,19 @@
 import axios from "axios";
 
-export const analyzeCSV = async (file) => {
+const API_BASE = process.env.REACT_APP_API_URL;
+
+export const uploadFinancials = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
 
   const response = await axios.post(
-    "http://127.0.0.1:8000/analyze-csv",
+    `${API_BASE}/upload-financials`,
     formData,
-    { headers: { "Content-Type": "multipart/form-data" } }
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 
   return response.data;
