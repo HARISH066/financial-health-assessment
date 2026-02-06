@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { analyzeCSV } from "../api";
+import { uploadFinancials } from "../api";
 
-export default function UploadForm({ onResult }) {
+export default function UploadForm() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleUpload = async () => {
     if (!file) {
@@ -11,13 +12,13 @@ export default function UploadForm({ onResult }) {
       return;
     }
 
-    setLoading(true);
     try {
-      const data = await analyzeCSV(file);
-      onResult(data);
+      setLoading(true);
+      const res = await uploadFinancials(file);
+      setMessage(res.message);
     } catch (err) {
-      alert("Upload failed");
       console.error(err);
+      alert("Upload failed");
     } finally {
       setLoading(false);
     }
@@ -25,26 +26,17 @@ export default function UploadForm({ onResult }) {
 
   return (
     <div className="upload-card">
-      <label className="upload-box">
-        <input
-          type="file"
-          accept=".csv,.xlsx"
-          hidden
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <div className="upload-content">
-          <span className="upload-icon">📂</span>
-          <span>{file ? file.name : "Click to upload CSV / Excel file"}</span>
-        </div>
-      </label>
+      <input
+        type="file"
+        accept=".csv"
+        onChange={(e) => setFile(e.target.files[0])}
+      />
 
-      <button
-        className={`analyze-btn ${loading ? "loading" : ""}`}
-        onClick={handleUpload}
-        disabled={loading}
-      >
-        {loading ? "Analyzing..." : "Analyze Financials"}
+      <button onClick={handleUpload} disabled={loading}>
+        {loading ? "Uploading..." : "Upload Financials"}
       </button>
+
+      {message && <p>{message}</p>}
     </div>
   );
 }
