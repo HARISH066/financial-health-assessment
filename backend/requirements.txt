@@ -4,8 +4,6 @@ pydantic
 python-multipart
 pandas
 numpy
-scikit-learn
 requests
 sqlalchemy
-alembic
-
+psycopg2-binary
